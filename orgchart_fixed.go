@@ -12,16 +12,27 @@ import (
 func main() {
 	// Check command line arguments
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: orgchart <csv-file> [output-pdf]")
+		fmt.Println("Usage: orgchart <csv-file> [output-pdf] [--keep-dot|-k]")
 		fmt.Println("If output-pdf is not specified, will use csv-file name with .pdf extension")
+		fmt.Println("Use --keep-dot or -k to keep the intermediate .dot file")
 		return
 	}
 
 	csvFile := os.Args[1]
 	outputFile := ""
-	if len(os.Args) >= 3 {
-		outputFile = os.Args[2]
-	} else {
+	keepDot := false
+
+	// Parse arguments
+	for i := 2; i < len(os.Args); i++ {
+		arg := os.Args[i]
+		if arg == "--keep-dot" || arg == "-k" {
+			keepDot = true
+		} else if outputFile == "" {
+			outputFile = arg
+		}
+	}
+
+	if outputFile == "" {
 		// Default to same name as CSV but with .pdf extension
 		outputFile = csvFile[:len(csvFile)-4] + ".pdf"
 	}
@@ -145,8 +156,12 @@ func main() {
 		return
 	}
 
-	// Clean up DOT file
-	os.Remove(dotFile)
-
-	fmt.Printf("Org chart generated successfully: %s\n", outputFile)
+	// Clean up DOT file unless --keep-dot flag is used
+	if !keepDot {
+		os.Remove(dotFile)
+		fmt.Printf("Org chart generated successfully: %s\n", outputFile)
+	} else {
+		fmt.Printf("Org chart generated successfully: %s\n", outputFile)
+		fmt.Printf("DOT file saved: %s\n", dotFile)
+	}
 }
