@@ -8,6 +8,7 @@ A command-line tool that converts CSV employee data into organizational charts a
 - **Cross-platform**: Works on macOS, Linux, and Windows
 - **Flexible output**: Optional intermediate DOT file generation for debugging
 - **Automatic layout**: Uses Graphviz for professional organizational chart layout
+- **Windows drag-and-drop**: On Windows, you can drag and drop a CSV file onto the executable to generate a PDF instantly (no command line needed)
 
 ## Requirements
 
@@ -84,26 +85,22 @@ Creates:
 - `my_org_chart.pdf` - The organizational chart
 - `my_org_chart.dot` - The Graphviz DOT file (for inspection)
 
+### Windows Drag-and-Drop
+
+- On Windows, you can drag and drop a CSV file onto the executable (`orgchart_win64.exe`) to generate a PDF in the same folder.
+- You can also double-click a CSV file (after file association) or right-click → "Open with" → select the executable.
+- All command line options are also available.
+
 ## CSV Format
 
-The program expects a CSV file with the following columns:
-
-| Column | Description | Example |
-|--------|-------------|---------|
-| 1 | Employee Status | "Active" |
-| 2 | Date Hired | "09/01/1972" |
-| 3 | Job Title | "President" |
-| 4 | Employee Name | "GERALD A. JACKSON" |
-| 5 | Supervisor Name | "GERALD A. JACKSON" |
-| 6 | Manager/Director Name | "" |
-| 7 | Cost Centers | "69_Corporate" |
+**The input CSV should be exported from the UKG "Title name supervisor" report (export without Display Header/Footer).**
 
 ### CSV Example
 
 ```csv
 "Employee Status","Date Hired","Default Jobs (HR) Full Path","Employee Name","Supervisor Name","Manager / Director Name","Cost Centers(Department)"
 "Active","09/01/1972","President","GERALD A. JACKSON","GERALD A. JACKSON","","69_Corporate"
-"Active","08/01/1977","Audio / Innovations Coordinator","TJ BUREK","MARK A. SCOTT","TARA D. SIGUR","53_Audio Services"
+"Active","06/08/2015","Vice President of Technology","JONATHAN R. STEARLEY","JOSHUA A. MEE","CLAY JACKSON","771_Technology Development"
 ```
 
 ## Output
@@ -174,10 +171,10 @@ This creates `orgchart_dragdrop.exe` for Windows.
 
 ```bash
 # Windows 64-bit
-GOOS=windows GOARCH=amd64 go build orgchart.go
+GOOS=windows GOARCH=amd64 go build orgchart_dragdrop.go
 
 # Windows 32-bit
-GOOS=windows GOARCH=386 go build orgchart.go
+GOOS=windows GOARCH=386 go build orgchart_dragdrop.go
 
 # Linux 64-bit
 GOOS=linux GOARCH=amd64 go build orgchart.go
