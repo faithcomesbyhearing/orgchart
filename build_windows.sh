@@ -20,11 +20,11 @@ fi
 GO_VERSION=$(go version | awk '{print $3}' | sed 's/go//')
 echo "✅ Go version: $GO_VERSION"
 
-# Check if orgchart.go exists
-if [ ! -f "orgchart.go" ]; then
-    echo "❌ Error: orgchart.go not found in current directory"
-    echo "Please run this script from the directory containing orgchart.go"
-    exit 1
+# Check if orgchart_dragdrop.go exists
+if [ ! -f "orgchart_dragdrop.go" ]; then
+	echo "❌ Error: orgchart_dragdrop.go not found in current directory"
+	echo "Please run this script from the directory containing orgchart_dragdrop.go"
+	exit 1
 fi
 
 echo ""
@@ -36,7 +36,7 @@ mkdir -p "$BUILD_DIR"
 
 # Build for Windows 64-bit (most common)
 echo "🔨 Building for Windows 64-bit..."
-GOOS=windows GOARCH=amd64 go build -o "$BUILD_DIR/orgchart_win64.exe" orgchart.go
+GOOS=windows GOARCH=amd64 go build -o "$BUILD_DIR/orgchart_win64.exe" orgchart_dragdrop.go
 if [ $? -eq 0 ]; then
     echo "✅ Windows 64-bit: $BUILD_DIR/orgchart_win64.exe"
 else
@@ -46,7 +46,7 @@ fi
 
 # Build for Windows 32-bit (for older systems)
 echo "🔨 Building for Windows 32-bit..."
-GOOS=windows GOARCH=386 go build -o "$BUILD_DIR/orgchart_win32.exe" orgchart.go
+GOOS=windows GOARCH=386 go build -o "$BUILD_DIR/orgchart_win32.exe" orgchart_dragdrop.go
 if [ $? -eq 0 ]; then
     echo "✅ Windows 32-bit: $BUILD_DIR/orgchart_win32.exe"
 else
@@ -56,7 +56,7 @@ fi
 
 # Build for Windows ARM64 (for newer Windows on ARM)
 echo "🔨 Building for Windows ARM64..."
-GOOS=windows GOARCH=arm64 go build -o "$BUILD_DIR/orgchart_win_arm64.exe" orgchart.go
+GOOS=windows GOARCH=arm64 go build -o "$BUILD_DIR/orgchart_win_arm64.exe" orgchart_dragdrop.go
 if [ $? -eq 0 ]; then
     echo "✅ Windows ARM64: $BUILD_DIR/orgchart_win_arm64.exe"
 else

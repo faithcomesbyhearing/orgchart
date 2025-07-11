@@ -15,10 +15,10 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Check if orgchart.go exists
-if not exist "orgchart.go" (
-    echo ❌ Error: orgchart.go not found in current directory
-    echo Please run this script from the directory containing orgchart.go
+REM Check if orgchart_dragdrop.go exists
+if not exist "orgchart_dragdrop.go" (
+    echo ❌ Error: orgchart_dragdrop.go not found in current directory
+    echo Please run this script from the directory containing orgchart_dragdrop.go
     pause
     exit /b 1
 )
@@ -36,7 +36,7 @@ REM Build for Windows 64-bit (most common)
 echo 🔨 Building for Windows 64-bit...
 set GOOS=windows
 set GOARCH=amd64
-go build -o "build\windows\orgchart_win64.exe" orgchart.go
+go build -o "build\windows\orgchart_win64.exe" orgchart_dragdrop.go
 if %errorlevel% neq 0 (
     echo ❌ Failed to build Windows 64-bit
     pause
@@ -48,7 +48,7 @@ REM Build for Windows 32-bit (for older systems)
 echo 🔨 Building for Windows 32-bit...
 set GOOS=windows
 set GOARCH=386
-go build -o "build\windows\orgchart_win32.exe" orgchart.go
+go build -o "build\windows\orgchart_win32.exe" orgchart_dragdrop.go
 if %errorlevel% neq 0 (
     echo ❌ Failed to build Windows 32-bit
     pause
@@ -60,7 +60,7 @@ REM Build for Windows ARM64 (for newer Windows on ARM)
 echo 🔨 Building for Windows ARM64...
 set GOOS=windows
 set GOARCH=arm64
-go build -o "build\windows\orgchart_win_arm64.exe" orgchart.go
+go build -o "build\windows\orgchart_win_arm64.exe" orgchart_dragdrop.go
 if %errorlevel% neq 0 (
     echo ❌ Failed to build Windows ARM64
     pause

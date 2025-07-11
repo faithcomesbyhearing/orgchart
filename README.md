@@ -134,13 +134,41 @@ The program provides helpful error messages for common issues:
 
 ### Building for Windows
 
+#### Using Build Scripts (Recommended)
+
+**From macOS/Linux:**
+```bash
+./build_windows.sh
+```
+
+**From Windows (PowerShell):**
+```powershell
+.\build_windows.ps1
+```
+
+**From Windows (Command Prompt):**
+```cmd
+build_windows.bat
+```
+
+These scripts build for multiple Windows architectures:
+- Windows 64-bit (`orgchart_win64.exe`) - Most common
+- Windows 32-bit (`orgchart_win32.exe`) - For older systems  
+- Windows ARM64 (`orgchart_win_arm64.exe`) - For Windows on ARM
+
+#### Windows Installation and Setup
+
+For detailed Windows installation instructions, including drag-and-drop functionality, see [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md).
+
+#### Manual Build
+
 From macOS/Linux, build a Windows executable:
 
 ```bash
-GOOS=windows GOARCH=amd64 go build orgchart.go
+GOOS=windows GOARCH=amd64 go build orgchart_dragdrop.go
 ```
 
-This creates `orgchart.exe` for Windows.
+This creates `orgchart_dragdrop.exe` for Windows.
 
 ### Building for Different Architectures
 

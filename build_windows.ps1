@@ -47,7 +47,7 @@ Write-Host "🔨 Building for Windows 64-bit..." -ForegroundColor Yellow
 try {
     $env:GOOS = "windows"
     $env:GOARCH = "amd64"
-    go build -o "$BUILD_DIR\orgchart_win64.exe" orgchart.go
+    go build -o "$BUILD_DIR\orgchart_win64.exe" orgchart_dragdrop.go
     Write-Host "✅ Windows 64-bit: $BUILD_DIR\orgchart_win64.exe" -ForegroundColor Green
 } catch {
     Write-Host "❌ Failed to build Windows 64-bit" -ForegroundColor Red
@@ -59,7 +59,7 @@ Write-Host "🔨 Building for Windows 32-bit..." -ForegroundColor Yellow
 try {
     $env:GOOS = "windows"
     $env:GOARCH = "386"
-    go build -o "$BUILD_DIR\orgchart_win32.exe" orgchart.go
+    go build -o "$BUILD_DIR\orgchart_win32.exe" orgchart_dragdrop.go
     Write-Host "✅ Windows 32-bit: $BUILD_DIR\orgchart_win32.exe" -ForegroundColor Green
 } catch {
     Write-Host "❌ Failed to build Windows 32-bit" -ForegroundColor Red
@@ -71,7 +71,7 @@ Write-Host "🔨 Building for Windows ARM64..." -ForegroundColor Yellow
 try {
     $env:GOOS = "windows"
     $env:GOARCH = "arm64"
-    go build -o "$BUILD_DIR\orgchart_win_arm64.exe" orgchart.go
+    go build -o "$BUILD_DIR\orgchart_win_arm64.exe" orgchart_dragdrop.go
     Write-Host "✅ Windows ARM64: $BUILD_DIR\orgchart_win_arm64.exe" -ForegroundColor Green
 } catch {
     Write-Host "❌ Failed to build Windows ARM64" -ForegroundColor Red
